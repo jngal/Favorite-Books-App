@@ -1,0 +1,43 @@
+.App {
+  min-height: 100vh;
+  padding: 24px;
+  background: #f5f1e8;
+  color: #1f1b16;
+}
+
+.App-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 32px;
+  border-radius: 20px;
+  background: #fffdf9;
+  box-shadow: 0 20px 60px rgba(41, 31, 20, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.App-shell h1,
+.App-shell p {
+  margin: 0;
+}
+
+.App-shell h1 {
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.App-shell p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #5a5147;
+}
+
+@media (max-width: 480px) {
+  .App {
+    padding: 16px;
+  }
+
+  .App-shell {
+    padding: 20px;
+  }
+}
