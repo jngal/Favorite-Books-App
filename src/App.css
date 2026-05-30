@@ -1,43 +1,151 @@
-.App {
+.app-shell {
   min-height: 100vh;
-  padding: 24px;
-  background: #f5f1e8;
-  color: #1f1b16;
+  padding: 32px 0 40px;
+  background:
+    radial-gradient(circle at top left, rgba(196, 164, 132, 0.22), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(131, 94, 65, 0.18), transparent 32%),
+    linear-gradient(180deg, #f8f1e7 0%, #efe2d0 100%);
 }
 
-.App-shell {
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 32px;
-  border-radius: 20px;
-  background: #fffdf9;
-  box-shadow: 0 20px 60px rgba(41, 31, 20, 0.08);
+.page-heading {
+  margin-bottom: 24px;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.hero-label,
+.section-label {
+  letter-spacing: 0.18em;
+  color: #8b5e3c;
+  font-weight: 700;
+}
+
+.hero-title {
+  font-weight: 800;
+  line-height: 0.98;
+  color: #21150d;
+}
+
+.hero-copy,
+.section-copy {
+  max-width: 720px;
+  color: #5d4737;
+}
+
+.panel-card {
+  height: 100%;
+  border: 1px solid rgba(93, 71, 55, 0.12);
+  border-radius: 28px;
+  background: rgba(255, 252, 247, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 22px 60px rgba(60, 38, 22, 0.08);
+}
+
+.panel-card--form {
+  position: sticky;
+  top: 24px;
+}
+
+.section-title {
+  margin-top: 4px;
+  font-weight: 700;
+  color: #21150d;
+}
+
+.submit-button {
+  min-height: 52px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #9a5f36 0%, #6d3f1f 100%);
+}
+
+.submit-button:hover {
+  background: linear-gradient(135deg, #8b522a 0%, #5d3418 100%);
+}
+
+.list-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.book-card {
+  height: 100%;
+  border-radius: 20px;
+  border-color: rgba(93, 71, 55, 0.12);
+  background: #fffdf9;
+}
+
+.book-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.book-card__image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: #eadbc9;
+}
+
+.book-card__header {
+  display: flex;
+  justify-content: space-between;
   gap: 12px;
+  align-items: center;
 }
 
-.App-shell h1,
-.App-shell p {
-  margin: 0;
+.book-detail-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: 18px;
+  background: #eadbc9;
 }
 
-.App-shell h1 {
-  font-size: clamp(2rem, 4vw, 3rem);
-}
-
-.App-shell p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #5a5147;
-}
-
-@media (max-width: 480px) {
-  .App {
-    padding: 16px;
+@media (max-width: 900px) {
+  .content-grid {
+    grid-template-columns: 1fr;
   }
 
-  .App-shell {
-    padding: 20px;
+  .panel-card--form {
+    position: static;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-shell {
+    padding: 20px 0 28px;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .list-header,
+  .book-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-list-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 320px) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .panel-card .MuiCardContent-root {
+    padding: 16px;
   }
 }

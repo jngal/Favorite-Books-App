@@ -67,9 +67,7 @@ export type Book = {
 
 ```ts
 type BooksState = {
-  items: Book[];
-  filter: string;
-  selectedBookId: string | null;
+  data: Book[];
 };
 ```
 
@@ -77,40 +75,31 @@ type BooksState = {
 
 ```text
 src/
-  app/
-    store.ts
-    hooks.ts
-  features/
-    books/
-      booksSlice.ts
-      selectors.ts
-      types.ts
   components/
-    BookForm/
+    common/
+      MUIWrappers...
+    book/
       BookForm.tsx
-      BookForm.scss
-    BooksList/
       BooksList.tsx
-      BooksList.scss
-    BookCard/
       BookCard.tsx
-      BookCard.scss
-    BookFilter/
-      BookFilter.tsx
-      BookFilter.scss
-    BookDetailsModal/
       BookDetailsModal.tsx
-      BookDetailsModal.scss
-    Layout/
-      Layout.tsx
-      Layout.scss
-  utils/
-    validation.ts
-    mappers.ts
+  hooks/
+    useRedux.ts
+    useReduxForm.ts
+  store/
+    mockedData/
+      book.json
+    slice/
+      books.slice.ts
+  hepers/
+    xxx.helpers.ts
+  locales/
+    en/
+      book.json
+    sk/
+      book.json
   styles/
-    _variables.scss
-    _mixins.scss
-    globals.scss
+    styles....
   App.tsx
   index.tsx
 ```
@@ -154,40 +143,3 @@ Minimalne breakpointy:
 - `768px - 1023px`: 2 stlpce s mensimi medzerami
 - `<= 767px`: 1 stlpec
 - `320px`: vsetko musi ostat pouzitelne bez horizontalneho scrollu
-
-Odporucania:
-
-- pouzit `display: grid` alebo `flex`
-- formularove polia a tlacidla na mobiloch roztiahnut na plnu sirku
-- modal obmedzit na sirku viewportu a pridat vnutorne scrollovanie
-
-## Implementacny plan
-
-1. Migrovat vstupne subory z `.js` na `.tsx` a doplnit `tsconfig.json`.
-2. Nastavit Redux store a `booksSlice`.
-3. Vytvorit komponenty pre formular, filter, zoznam a modal.
-4. Doplnit validaciu formulara a lokalny UX stav formulara.
-5. Nastylovat rozlozenie cez `SASS` so zameranim na 320px sirku.
-6. Dodat zakladne testy pre reducer a formular, ak ostane cas.
-
-## Co odstranit z povodneho CRA zakladu
-
-Tieto subory su typicky boilerplate a pre toto zadanie nie su potrebne:
-
-- `src/logo.svg`
-- `src/App.test.js`
-- `src/setupTests.js`
-- `src/reportWebVitals.js`
-- `public/logo192.png`
-- `public/logo512.png`
-- `public/manifest.json`
-
-Volitelne odstranit alebo nahradit:
-
-- `README.md` ak je stale defaultny
-- `public/favicon.ico` ak nebude pouzity vlastny branding
-- `public/robots.txt` ak netreba riesit crawling
-
-## Poznamka k aktualnemu stavu repozitara
-
-Aktualny projekt je po `create-react-app` stale v JavaScript verzii. Kedze zadanie explicitne vyzaduje `TypeScript`, dalsi krok by mal byt realny prechod na `.ts` a `.tsx` subory, nie iba dopisanie dokumentacie.
