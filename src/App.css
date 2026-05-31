@@ -88,11 +88,26 @@
   align-items: flex-start;
 }
 
+.book-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 16px;
+}
+
+.book-sort {
+  min-width: 0;
+}
+
 .book-card {
   height: 100%;
   border-radius: 20px;
   border-color: rgba(93, 71, 55, 0.12);
   background: #fffdf9;
+}
+
+.book-card .MuiCardActions-root {
+  justify-content: flex-end;
+  padding: 0 16px 16px;
 }
 
 .book-list-grid {
@@ -124,6 +139,18 @@
   background: #eadbc9;
 }
 
+.book-detail-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.book-detail-close-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
 @media (max-width: 900px) {
   .hero-header {
     flex-direction: column;
@@ -152,6 +179,10 @@
   .book-card__header {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .book-filters {
+    grid-template-columns: 1fr;
   }
 
   .book-list-grid {

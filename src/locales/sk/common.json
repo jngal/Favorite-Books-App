@@ -6,6 +6,8 @@
   "description": "Popis",
   "image": "Obrázok",
   "upload": "Uložiť",
+  "close": "Zavrieť",
+  "delete": "Vymazať",
   "chooseFile": "Vybrať súbor",
   "requiredField": "Povinné pole",
   "titleRequired": "Názov je povinný.",
@@ -16,5 +18,8 @@
   "selectedFile": "Vybraný súbor: {{name}}",
   "imagePreviewAlt": "Náhľad vybraného obrázka",
   "formInvalid": "Formular obsahuje neplatné alebo chýbajuce údaje.",
-  "descriptionCounter": "{{count}}/300 znakov"
+  "descriptionCounter": "{{count}}/300 znakov",
+  "sortBy": "Zoradiť podľa",
+  "sortNewest": "Najnovšie",
+  "sortOldest": "Najstaršie"
 }

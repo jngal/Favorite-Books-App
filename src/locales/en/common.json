@@ -6,6 +6,8 @@
   "description": "Description",
   "image": "Image",
   "upload": "Upload",
+  "close": "Close",
+  "delete": "Delete",
   "chooseFile": "Choose File",
   "requiredField": "Required field",
   "titleRequired": "Title is required.",
@@ -16,5 +18,8 @@
   "selectedFile": "Selected file: {{name}}",
   "imagePreviewAlt": "Selected image preview",
   "formInvalid": "The form contains invalid or missing values.",
-  "descriptionCounter": "{{count}}/300 characters"
+  "descriptionCounter": "{{count}}/300 characters",
+  "sortBy": "Sort by",
+  "sortNewest": "Newest",
+  "sortOldest": "Oldest"
 }

@@ -88,6 +88,7 @@ const BookForm = () => {
         author: data.author.trim(),
         description: data.description.trim(),
         image: data.image.trim(),
+        createdAt: new Date().toISOString(),
       }),
     );
 
@@ -107,7 +108,6 @@ const BookForm = () => {
               {t("book:addBookTitle")}
             </Typography>
           </Box>
-
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <Stack spacing={2.5}>
               <TextField
@@ -123,14 +123,12 @@ const BookForm = () => {
                     : t("common:requiredField")
                 }
               />
-
               <TextField
                 name="author"
                 control={control}
                 label={t("common:author")}
                 fullWidth
               />
-
               <TextAreaField
                 name="description"
                 control={control}
@@ -146,7 +144,6 @@ const BookForm = () => {
                       })
                 }
               />
-
               <TextField
                 name="image"
                 control={control}
@@ -179,7 +176,6 @@ const BookForm = () => {
               >
                 {t("common:upload")}
               </Button>
-
               {submitCount > 0 && Object.keys(errors).length > 0 ? (
                 <Alert severity="warning">{t("common:formInvalid")}</Alert>
               ) : null}

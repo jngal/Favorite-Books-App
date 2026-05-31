@@ -4,38 +4,27 @@ import {
   Card,
   CardContent,
   Chip,
+  MenuItem,
   Stack,
   TextField,
   Typography,
 } from "@mui/material";
-import { useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { useAppSelector } from "../../hooks/useRedux";
-import { Book, getBook, getListBook } from "../../store/slice/books.slice";
+import { useFilterBook } from "../../hooks/useFilterBook";
+import { useAppDispatch, useAppSelector } from "../../hooks/useRedux";
+import { useSelectedBook } from "../../hooks/useSelectedBook";
+import { Book, deleteBook, getListBook } from "../../store/slice/books.slice";
 import BookCard from "./BookCard";
 import BookDetail from "./BookDetail";
 
 const BookList = () => {
   const { t } = useTranslation();
-  const items = useAppSelector(getListBook);
-  const [filter, setFilter] = useState("");
-  const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
-
-  const filteredBooks = useMemo(() => {
-    const normalizedFilter = filter.trim().toLowerCase();
-
-    if (!normalizedFilter) {
-      return items;
-    }
-
-    return items.filter((book: Book) =>
-      book.title.toLowerCase().includes(normalizedFilter),
-    );
-  }, [filter, items]);
-
-  const selectedBook = useAppSelector((state) =>
-    getBook(state, selectedBookId),
-  );
+  const dispatch = useAppDispatch();
+  const books = useAppSelector(getListBook);
+  const { filter, sortOrder, filteredBooks, handleOnChange, handleSetOrder } =
+    useFilterBook(books);
+  const { selectedBook, setSelectedBookId, clearSelectedBook } =
+    useSelectedBook();
 
   return (
     <>
@@ -52,22 +41,32 @@ const BookList = () => {
                 </Typography>
               </Box>
               <Chip
-                label={t("book:booksCount", { count: items.length })}
+                label={t("book:booksCount", { count: books.length })}
                 color="primary"
                 variant="outlined"
               />
             </Box>
-
-            <TextField
-              label={t("book:filterByTitle")}
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              fullWidth
-            />
-
+            <Box className="book-filters">
+              <TextField
+                label={t("book:filterByTitle")}
+                value={filter}
+                onChange={handleOnChange}
+                fullWidth
+              />
+              <TextField
+                select
+                label={t("book:sortBy")}
+                value={sortOrder}
+                onChange={handleSetOrder}
+                className="book-sort"
+              >
+                <MenuItem value="newest">{t("sortNewest")}</MenuItem>
+                <MenuItem value="oldest">{t("sortOldest")}</MenuItem>
+              </TextField>
+            </Box>
             {filteredBooks.length === 0 ? (
               <Alert severity="info">
-                {items.length === 0
+                {books.length === 0
                   ? t("book:noBooks")
                   : t("book:noFilterMatch")}
               </Alert>
@@ -75,7 +74,11 @@ const BookList = () => {
               <Box className="book-list-grid">
                 {filteredBooks.map((book: Book) => (
                   <Box key={book.id}>
-                    <BookCard book={book} onSelect={setSelectedBookId} />
+                    <BookCard
+                      book={book}
+                      onSelect={setSelectedBookId}
+                      onDelete={(id) => dispatch(deleteBook(id))}
+                    />
                   </Box>
                 ))}
               </Box>
@@ -83,7 +86,7 @@ const BookList = () => {
           </Stack>
         </CardContent>
       </Card>
-      <BookDetail book={selectedBook} onClose={() => setSelectedBookId(null)} />
+      <BookDetail book={selectedBook} onClose={clearSelectedBook} />
     </>
   );
 };

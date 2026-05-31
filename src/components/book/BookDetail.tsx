@@ -1,9 +1,11 @@
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Box,
   Dialog,
   DialogContent,
   DialogTitle,
   Divider,
+  IconButton,
   Stack,
   Typography,
 } from "@mui/material";
@@ -21,7 +23,16 @@ const BookDetail = ({ book, onClose }: Props) => {
 
   return (
     <Dialog open={Boolean(book)} onClose={handleClose} fullWidth maxWidth="sm">
-      <DialogTitle>{t("book:bookDetails")}</DialogTitle>
+      <DialogTitle className="book-detail-title">
+        <Box component="span">{t("book:bookDetails")}</Box>
+        <IconButton
+          aria-label={t("common:close")}
+          onClick={handleClose}
+          size="small"
+        >
+          <CloseIcon fontSize="small" />
+        </IconButton>
+      </DialogTitle>
       <DialogContent dividers>
         {book ? (
           <Stack spacing={2}>

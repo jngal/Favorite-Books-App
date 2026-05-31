@@ -1,7 +1,9 @@
 import {
   Box,
+  Button,
   Card,
   CardActionArea,
+  CardActions,
   CardContent,
   Chip,
   Stack,
@@ -12,12 +14,18 @@ import { Book } from "../../store/slice/books.slice";
 interface Props {
   book: Book;
   onSelect: (id: string) => void;
+  onDelete: (id: string) => void;
 }
-const BookCard = ({ book, onSelect }: Props) => {
+const BookCard = ({ book, onSelect, onDelete }: Props) => {
   const { t } = useTranslation();
   const handleSelect = (id: string) => {
     onSelect(id);
   };
+
+  const handleDelete = () => {
+    onDelete(book.id);
+  };
+
   return (
     <Box>
       <Card variant="outlined" className="book-card">
@@ -42,6 +50,16 @@ const BookCard = ({ book, onSelect }: Props) => {
             </Stack>
           </CardContent>
         </CardActionArea>
+        <CardActions>
+          <Button
+            color="error"
+            variant="contained"
+            size="small"
+            onClick={handleDelete}
+          >
+            {t("common:delete")}
+          </Button>
+        </CardActions>
       </Card>
     </Box>
   );

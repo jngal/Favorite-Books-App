@@ -8,6 +8,7 @@ export type Book = {
   author: string;
   description: string;
   image: string;
+  createdAt: string;
 };
 
 type BooksState = {

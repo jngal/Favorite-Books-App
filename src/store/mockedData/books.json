@@ -4,27 +4,31 @@
     "title": "Atomic Habits",
     "author": "James Clear",
     "description": "A practical guide to building good habits, breaking bad ones, and improving a little every day.",
-    "image": "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=900&q=80"
+    "image": "https://booxies.com/cdn/shop/products/AtomicHabits.jpg?crop=center&height=1200&v=1633315939&width=1200",
+    "createdAt": "2026-05-10T09:15:00.000Z"
   },
   {
     "id": "book-2",
     "title": "Clean Code",
     "author": "Robert C. Martin",
     "description": "A software craftsmanship classic focused on writing readable, maintainable, and reliable code.",
-    "image": "https://images.unsplash.com/photo-1495446815901-a7297e633e8d?auto=format&fit=crop&w=900&q=80"
+    "image": "https://m.media-amazon.com/images/I/81Rnac2Fq+L._AC_UF1000,1000_QL80_.jpg",
+    "createdAt": "2026-05-18T13:40:00.000Z"
   },
   {
     "id": "book-3",
     "title": "Deep Work",
     "author": "Cal Newport",
     "description": "A book about focused work, concentration, and producing better results in a distracted world.",
-    "image": "https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=900&q=80"
+    "image": "https://m.media-amazon.com/images/I/71din4TLubL._UF1000,1000_QL80_.jpghttps://m.media-amazon.com/images/I/71din4TLubL._UF1000,1000_QL80_.jpg",
+    "createdAt": "2026-05-24T07:25:00.000Z"
   },
   {
     "id": "book-4",
     "title": "The Pragmatic Programmer",
     "author": "Andrew Hunt and David Thomas",
     "description": "Timeless advice for developers on thinking clearly, improving skills, and building sustainable software.",
-    "image": "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=900&q=80"
+    "image": "https://m.media-amazon.com/images/I/71Nxk9VhSTL._UF1000,1000_QL80_.jpg",
+    "createdAt": "2026-05-29T18:05:00.000Z"
   }
 ]
