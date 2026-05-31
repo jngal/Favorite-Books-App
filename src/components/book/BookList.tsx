@@ -55,7 +55,7 @@ const BookList = () => {
               />
               <TextField
                 select
-                label={t("book:sortBy")}
+                label={t("sortBy")}
                 value={sortOrder}
                 onChange={handleSetOrder}
                 className="book-sort"

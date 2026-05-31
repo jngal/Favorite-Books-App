@@ -1,5 +1,5 @@
-import Brightness7Icon from "@mui/icons-material/Brightness7";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
+import LightModeIcon from "@mui/icons-material/LightMode";
 import {
   Box,
   Button,
@@ -45,7 +45,7 @@ function App({ themeMode, setThemeMode }: Props) {
                     {themeMode === "light" ? (
                       <DarkModeIcon />
                     ) : (
-                      <Brightness7Icon />
+                      <LightModeIcon />
                     )}
                   </IconButton>
                 </Box>

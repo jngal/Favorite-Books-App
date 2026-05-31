@@ -5,7 +5,6 @@ import {
   CardActionArea,
   CardActions,
   CardContent,
-  Chip,
   Stack,
   Typography,
 } from "@mui/material";
@@ -42,24 +41,26 @@ const BookCard = ({ book, onSelect, onDelete }: Props) => {
               ) : null}
               <Box className="book-card__header">
                 <Typography variant="h6">{book.title}</Typography>
-                {book.author ? <Chip size="small" label={book.author} /> : null}
+                {book.author ? (
+                  <Box className="book-card__author">{book.author}</Box>
+                ) : null}
               </Box>
               <Typography variant="body2" color="text.secondary">
                 {book.description || t("book:noDescription")}
               </Typography>
             </Stack>
           </CardContent>
+          <CardActions>
+            <Button
+              color="error"
+              variant="contained"
+              size="small"
+              onClick={handleDelete}
+            >
+              {t("common:delete")}
+            </Button>
+          </CardActions>
         </CardActionArea>
-        <CardActions>
-          <Button
-            color="error"
-            variant="contained"
-            size="small"
-            onClick={handleDelete}
-          >
-            {t("common:delete")}
-          </Button>
-        </CardActions>
       </Card>
     </Box>
   );
