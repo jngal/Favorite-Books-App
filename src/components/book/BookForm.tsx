@@ -5,17 +5,21 @@ import {
   Card,
   CardContent,
   Stack,
-  TextField,
   Typography,
 } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
 import { useMemo } from "react";
-import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import * as yup from "yup";
+import { isBase64Image } from "../../helpers/file.helpers";
+import { isURL } from "../../helpers/url.heleprs";
+import { useFile } from "../../hooks/useFile";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { useReduxForm } from "../../hooks/useReduxForm";
 import { createBook } from "../../store/slice/books.slice";
+import ImageFileInput from "../common/ImageFileInput";
+import TextAreaField from "../common/form/TextAreaField";
+import TextField from "../common/form/TextField";
 
 const DEFAULT_BOOK_VALUES = {
   title: "",
@@ -39,7 +43,11 @@ const BookForm = () => {
           image: yup
             .string()
             .trim()
-            .url(t("common:imageInvalid"))
+            .test(
+              "image-url-or-base64",
+              t("common:imageInvalid"),
+              (value) => !value || isURL(value) || isBase64Image(value),
+            )
             .nullable()
             .transform((value) => (value ? value : "")),
         })
@@ -52,6 +60,7 @@ const BookForm = () => {
     watch,
     handleSubmit,
     reset,
+    setValue,
     formState: { errors, isSubmitting, submitCount },
   } = useReduxForm({
     mode: "onBlur",
@@ -60,6 +69,16 @@ const BookForm = () => {
   });
 
   const descriptionValue = watch("description") || "";
+  const imageValue = watch("image") || "";
+  const { selectedFileName, handleFileChange, resetFile } = useFile({
+    onLoad: (result) => {
+      setValue("image", result, {
+        shouldDirty: true,
+        shouldTouch: true,
+        shouldValidate: true,
+      });
+    },
+  });
 
   const onSubmit = async (data: BookFormValues) => {
     dispatch(
@@ -73,6 +92,7 @@ const BookForm = () => {
     );
 
     reset(DEFAULT_BOOK_VALUES);
+    resetFile();
   };
 
   return (
@@ -90,74 +110,66 @@ const BookForm = () => {
 
           <Box component="form" onSubmit={handleSubmit(onSubmit)} noValidate>
             <Stack spacing={2.5}>
-              <Controller
+              <TextField
                 name="title"
                 control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label={t("common:title")}
-                    required
-                    fullWidth
-                    error={Boolean(errors.title)}
-                    helperText={
-                      typeof errors.title?.message === "string"
-                        ? errors.title.message
-                        : t("common:requiredField")
-                    }
-                  />
-                )}
+                label={t("common:title")}
+                required
+                fullWidth
+                error={Boolean(errors.title)}
+                helperText={
+                  typeof errors.title?.message === "string"
+                    ? errors.title.message
+                    : t("common:requiredField")
+                }
               />
 
-              <Controller
+              <TextField
                 name="author"
                 control={control}
-                render={({ field }) => (
-                  <TextField {...field} label={t("common:author")} fullWidth />
-                )}
+                label={t("common:author")}
+                fullWidth
               />
 
-              <Controller
+              <TextAreaField
                 name="description"
                 control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label={t("common:description")}
-                    multiline
-                    minRows={4}
-                    fullWidth
-                    error={Boolean(errors.description)}
-                    helperText={
-                      typeof errors.description?.message === "string"
-                        ? errors.description.message
-                        : t("common:descriptionCounter", {
-                            count: descriptionValue.length,
-                          })
-                    }
-                  />
-                )}
+                label={t("common:description")}
+                minRows={4}
+                fullWidth
+                error={Boolean(errors.description)}
+                helperText={
+                  typeof errors.description?.message === "string"
+                    ? errors.description.message
+                    : t("common:descriptionCounter", {
+                        count: descriptionValue.length,
+                      })
+                }
               />
 
-              <Controller
+              <TextField
                 name="image"
                 control={control}
-                render={({ field }) => (
-                  <TextField
-                    {...field}
-                    label={t("common:image")}
-                    placeholder="https://..."
-                    fullWidth
-                    error={Boolean(errors.image)}
-                    helperText={
-                      typeof errors.image?.message === "string"
-                        ? errors.image.message
-                        : t("common:imageOptional")
-                    }
-                  />
-                )}
+                label={t("common:image")}
+                placeholder="https://..."
+                fullWidth
+                onChange={() => {
+                  if (selectedFileName) {
+                    resetFile();
+                  }
+                }}
+                error={Boolean(errors.image)}
+                helperText={
+                  typeof errors.image?.message === "string"
+                    ? errors.image.message
+                    : t("common:imageOptional")
+                }
               />
-
+              <ImageFileInput
+                imageValue={imageValue}
+                onChange={handleFileChange}
+                selectedFileName={selectedFileName}
+              />
               <Button
                 type="submit"
                 variant="contained"

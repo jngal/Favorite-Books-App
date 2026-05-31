@@ -6,11 +6,15 @@
   "description": "Popis",
   "image": "Obrázok",
   "upload": "Uložiť",
+  "chooseFile": "Vybrať súbor",
   "requiredField": "Povinné pole",
   "titleRequired": "Názov je povinný.",
   "descriptionMax": "Krátky popis môže mať maximálne 300 znakov.",
-  "imageInvalid": "Zadaj platnú URL adresu obrázka.",
+  "imageInvalid": "Zadaj platnú URL adresu obrázka alebo nahraj obrázok zo súboru.",
   "imageOptional": "Voliteľne: zadaj URL adresu obrázka",
+  "imageUploadHelper": "Môžeš vložiť URL obrázka alebo nahrať lokálny obrázok.",
+  "selectedFile": "Vybraný súbor: {{name}}",
+  "imagePreviewAlt": "Náhľad vybraného obrázka",
   "formInvalid": "Formular obsahuje neplatné alebo chýbajuce údaje.",
   "descriptionCounter": "{{count}}/300 znakov"
 }

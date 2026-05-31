@@ -6,11 +6,15 @@
   "description": "Description",
   "image": "Image",
   "upload": "Upload",
+  "chooseFile": "Choose File",
   "requiredField": "Required field",
   "titleRequired": "Title is required.",
   "descriptionMax": "Short description can be at most 300 characters.",
-  "imageInvalid": "Enter a valid image URL.",
+  "imageInvalid": "Enter a valid image URL or upload an image file.",
   "imageOptional": "Optional: enter an image URL",
+  "imageUploadHelper": "You can either paste an image URL or upload a local image file.",
+  "selectedFile": "Selected file: {{name}}",
+  "imagePreviewAlt": "Selected image preview",
   "formInvalid": "The form contains invalid or missing values.",
   "descriptionCounter": "{{count}}/300 characters"
 }
