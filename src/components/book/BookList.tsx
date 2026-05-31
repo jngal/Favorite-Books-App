@@ -9,12 +9,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useAppSelector } from "../../hooks/useRedux";
 import { Book, getBook, getListBook } from "../../store/slice/books.slice";
 import BookCard from "./BookCard";
 import BookDetail from "./BookDetail";
 
 const BookList = () => {
+  const { t } = useTranslation();
   const items = useAppSelector(getListBook);
   const [filter, setFilter] = useState("");
   const [selectedBookId, setSelectedBookId] = useState<string | null>(null);
@@ -43,21 +45,21 @@ const BookList = () => {
             <Box className="list-header">
               <Box>
                 <Typography variant="overline" className="section-label">
-                  Book Collection
+                  {t("book:bookCollection")}
                 </Typography>
                 <Typography variant="h4" className="section-title">
-                  Book List
+                  {t("book:bookList")}
                 </Typography>
               </Box>
               <Chip
-                label={`${items.length} books`}
+                label={t("book:booksCount", { count: items.length })}
                 color="primary"
                 variant="outlined"
               />
             </Box>
 
             <TextField
-              label="Filter by title"
+              label={t("book:filterByTitle")}
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               fullWidth
@@ -66,13 +68,15 @@ const BookList = () => {
             {filteredBooks.length === 0 ? (
               <Alert severity="info">
                 {items.length === 0
-                  ? "No books have been added yet."
-                  : "No books match the current filter."}
+                  ? t("book:noBooks")
+                  : t("book:noFilterMatch")}
               </Alert>
             ) : (
               <Box className="book-list-grid">
                 {filteredBooks.map((book: Book) => (
-                  <BookCard book={book} onSelect={setSelectedBookId} />
+                  <Box key={book.id}>
+                    <BookCard book={book} onSelect={setSelectedBookId} />
+                  </Box>
                 ))}
               </Box>
             )}

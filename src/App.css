@@ -11,6 +11,20 @@
   margin-bottom: 24px;
 }
 
+.hero-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.language-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 .content-grid {
   display: grid;
   grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -111,6 +125,11 @@
 }
 
 @media (max-width: 900px) {
+  .hero-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .content-grid {
     grid-template-columns: 1fr;
   }

@@ -9,39 +9,44 @@ import {
   Typography,
 } from "@mui/material";
 import { nanoid } from "@reduxjs/toolkit";
+import { useMemo } from "react";
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 import * as yup from "yup";
 import { useAppDispatch } from "../../hooks/useRedux";
 import { useReduxForm } from "../../hooks/useReduxForm";
 import { createBook } from "../../store/slice/books.slice";
 
-export const DEFAULT_BOOK_VALUES = {
+const DEFAULT_BOOK_VALUES = {
   title: "",
   author: "",
   description: "",
   image: "",
 };
 
-export const bookFormSchema = yup
-  .object({
-    title: yup.string().trim().required("Title is required."),
-    author: yup.string().trim(),
-    description: yup
-      .string()
-      .max(300, "Short description can be at most 300 characters."),
-    image: yup
-      .string()
-      .trim()
-      .url("Enter a valid image URL.")
-      .nullable()
-      .transform((value) => (value ? value : "")),
-  })
-  .required();
-
-export type BookFormValues = yup.InferType<typeof bookFormSchema>;
+type BookFormValues = typeof DEFAULT_BOOK_VALUES;
 
 const BookForm = () => {
+  const { t } = useTranslation();
   const dispatch = useAppDispatch();
+  const bookFormSchema = useMemo(
+    () =>
+      yup
+        .object({
+          title: yup.string().trim().required(t("common:titleRequired")),
+          author: yup.string().trim(),
+          description: yup.string().max(300, t("common:descriptionMax")),
+          image: yup
+            .string()
+            .trim()
+            .url(t("common:imageInvalid"))
+            .nullable()
+            .transform((value) => (value ? value : "")),
+        })
+        .required(),
+    [t],
+  );
+
   const {
     control,
     watch,
@@ -76,10 +81,10 @@ const BookForm = () => {
         <Stack spacing={3}>
           <Box>
             <Typography variant="overline" className="section-label">
-              Add a Book
+              {t("book:addBookLabel")}
             </Typography>
             <Typography variant="h4" className="section-title">
-              Add Favorite Book
+              {t("book:addBookTitle")}
             </Typography>
           </Box>
 
@@ -91,14 +96,14 @@ const BookForm = () => {
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Title"
+                    label={t("common:title")}
                     required
                     fullWidth
                     error={Boolean(errors.title)}
                     helperText={
                       typeof errors.title?.message === "string"
                         ? errors.title.message
-                        : "Required field"
+                        : t("common:requiredField")
                     }
                   />
                 )}
@@ -108,7 +113,7 @@ const BookForm = () => {
                 name="author"
                 control={control}
                 render={({ field }) => (
-                  <TextField {...field} label="Author" fullWidth />
+                  <TextField {...field} label={t("common:author")} fullWidth />
                 )}
               />
 
@@ -118,7 +123,7 @@ const BookForm = () => {
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Description"
+                    label={t("common:description")}
                     multiline
                     minRows={4}
                     fullWidth
@@ -126,7 +131,9 @@ const BookForm = () => {
                     helperText={
                       typeof errors.description?.message === "string"
                         ? errors.description.message
-                        : `${descriptionValue.length}/300 characters`
+                        : t("common:descriptionCounter", {
+                            count: descriptionValue.length,
+                          })
                     }
                   />
                 )}
@@ -138,14 +145,14 @@ const BookForm = () => {
                 render={({ field }) => (
                   <TextField
                     {...field}
-                    label="Image"
+                    label={t("common:image")}
                     placeholder="https://..."
                     fullWidth
                     error={Boolean(errors.image)}
                     helperText={
                       typeof errors.image?.message === "string"
                         ? errors.image.message
-                        : "Optional: enter an image URL"
+                        : t("common:imageOptional")
                     }
                   />
                 )}
@@ -158,13 +165,11 @@ const BookForm = () => {
                 disabled={isSubmitting}
                 className="submit-button"
               >
-                Upload
+                {t("common:upload")}
               </Button>
 
               {submitCount > 0 && Object.keys(errors).length > 0 ? (
-                <Alert severity="warning">
-                  The form contains invalid or missing values.
-                </Alert>
+                <Alert severity="warning">{t("common:formInvalid")}</Alert>
               ) : null}
             </Stack>
           </Box>

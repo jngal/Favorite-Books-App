@@ -1,0 +1,16 @@
+{
+  "appTitle": "Favorite Books App",
+  "language": "Language",
+  "title": "Title",
+  "author": "Author",
+  "description": "Description",
+  "image": "Image",
+  "upload": "Upload",
+  "requiredField": "Required field",
+  "titleRequired": "Title is required.",
+  "descriptionMax": "Short description can be at most 300 characters.",
+  "imageInvalid": "Enter a valid image URL.",
+  "imageOptional": "Optional: enter an image URL",
+  "formInvalid": "The form contains invalid or missing values.",
+  "descriptionCounter": "{{count}}/300 characters"
+}

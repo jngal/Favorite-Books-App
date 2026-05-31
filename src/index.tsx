@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import './index.css';
 import App from './App';
 import { store } from './store/store';
+import './i18n';
 
 const theme = createTheme({
   palette: {

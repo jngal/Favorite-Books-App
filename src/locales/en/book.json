@@ -1,0 +1,14 @@
+{
+  "addBookLabel": "Add a Book",
+  "addBookTitle": "Add Favorite Book",
+  "bookCollection": "Book Collection",
+  "bookList": "Book List",
+  "booksCount": "{{count}} books",
+  "filterByTitle": "Filter by title",
+  "noBooks": "No books have been added yet.",
+  "noFilterMatch": "No books match the current filter.",
+  "noDescription": "No description",
+  "bookDetails": "Book Details",
+  "authorMissing": "Author missing",
+  "detailNoDescription": "This book has no description."
+}

@@ -1,0 +1,16 @@
+{
+  "appTitle": "Favorite Books App",
+  "language": "Jazyk",
+  "title": "Názov",
+  "author": "Autor",
+  "description": "Popis",
+  "image": "Obrázok",
+  "upload": "Uložiť",
+  "requiredField": "Povinné pole",
+  "titleRequired": "Názov je povinný.",
+  "descriptionMax": "Krátky popis môže mať maximálne 300 znakov.",
+  "imageInvalid": "Zadaj platnú URL adresu obrázka.",
+  "imageOptional": "Voliteľne: zadaj URL adresu obrázka",
+  "formInvalid": "Formular obsahuje neplatné alebo chýbajuce údaje.",
+  "descriptionCounter": "{{count}}/300 znakov"
+}

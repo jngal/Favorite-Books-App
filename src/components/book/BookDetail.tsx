@@ -7,19 +7,21 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Book } from "../../store/slice/books.slice";
 interface Props {
-  book: Book;
+  book: Book | null;
   onClose: () => void;
 }
 const BookDetail = ({ book, onClose }: Props) => {
+  const { t } = useTranslation();
   const handleClose = () => {
     onClose();
   };
 
   return (
     <Dialog open={Boolean(book)} onClose={handleClose} fullWidth maxWidth="sm">
-      <DialogTitle>Book Details</DialogTitle>
+      <DialogTitle>{t("book:bookDetails")}</DialogTitle>
       <DialogContent dividers>
         {book ? (
           <Stack spacing={2}>
@@ -34,12 +36,12 @@ const BookDetail = ({ book, onClose }: Props) => {
             <Box>
               <Typography variant="h5">{book.title}</Typography>
               <Typography variant="subtitle1" color="text.secondary">
-                {book.author || "Author missing"}
+                {book.author || t("book:authorMissing")}
               </Typography>
             </Box>
             <Divider />
             <Typography variant="body1">
-              {book.description || "This book has no description."}
+              {book.description || t("book:detailNoDescription")}
             </Typography>
           </Stack>
         ) : null}

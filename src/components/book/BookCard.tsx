@@ -7,17 +7,19 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
+import { useTranslation } from "react-i18next";
 import { Book } from "../../store/slice/books.slice";
 interface Props {
   book: Book;
   onSelect: (id: string) => void;
 }
 const BookCard = ({ book, onSelect }: Props) => {
+  const { t } = useTranslation();
   const handleSelect = (id: string) => {
     onSelect(id);
   };
   return (
-    <Box key={book.id}>
+    <Box>
       <Card variant="outlined" className="book-card">
         <CardActionArea onClick={() => handleSelect(book.id)}>
           <CardContent>
@@ -35,7 +37,7 @@ const BookCard = ({ book, onSelect }: Props) => {
                 {book.author ? <Chip size="small" label={book.author} /> : null}
               </Box>
               <Typography variant="body2" color="text.secondary">
-                {book.description || "No description"}
+                {book.description || t("book:noDescription")}
               </Typography>
             </Stack>
           </CardContent>

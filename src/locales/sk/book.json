@@ -1,0 +1,14 @@
+{
+  "addBookLabel": "Pridať knihu",
+  "addBookTitle": "Pridať obľúbenu knihu",
+  "bookCollection": "Zbierka kníh",
+  "bookList": "Zoznam kníh",
+  "booksCount": "{{count}} knih",
+  "filterByTitle": "Filtrovať podľa názvu",
+  "noBooks": "Zatiaľ nebola pridaná žiadna kniha.",
+  "noFilterMatch": "Žiadna kniha nevyhovuje aktuálnemu filtru.",
+  "noDescription": "Bez popisu",
+  "bookDetails": "Detail knihy",
+  "authorMissing": "Autor nie je zadaný",
+  "detailNoDescription": "Táto kniha nema vyplnený popis."
+}
