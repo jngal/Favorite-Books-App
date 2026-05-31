@@ -1,0 +1,328 @@
+@use "./variables" as *;
+@use "./mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family-base;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--color-bg);
+  color: var(--color-text);
+
+  &[data-theme="dark"] {
+    --color-bg: #12110f;
+    --color-bg-accent-top: rgba(184, 120, 72, 0.16);
+    --color-bg-accent-bottom: rgba(87, 119, 148, 0.14);
+    --color-bg-gradient-end: #1d1916;
+    --color-surface: rgba(32, 29, 25, 0.9);
+    --color-surface-solid: #24201c;
+    --color-text: #f4ede4;
+    --color-text-muted: #d1c2b2;
+    --color-accent: #f0ab6d;
+    --color-accent-strong: #c87936;
+    --color-border: rgba(244, 237, 228, 0.12);
+    --color-image-bg: #40352d;
+    --shadow-soft: 0 22px 60px rgba(0, 0, 0, 0.32);
+  }
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 32px 0 40px;
+  background:
+    radial-gradient(circle at top left, var(--color-bg-accent-top), transparent 28%),
+    radial-gradient(circle at bottom right, var(--color-bg-accent-bottom), transparent 32%),
+    linear-gradient(180deg, var(--color-bg) 0%, var(--color-bg-gradient-end) 100%);
+  color: var(--color-text);
+
+  .MuiTypography-root,
+  .MuiFormLabel-root,
+  .MuiInputBase-input,
+  .MuiInputBase-input::placeholder,
+  .MuiFormHelperText-root,
+  .MuiChip-label,
+  .MuiButton-root {
+    color: inherit;
+  }
+
+  .MuiOutlinedInput-root,
+  .MuiCard-root,
+  .MuiDialog-paper,
+  .MuiMenu-paper {
+    background: var(--color-surface-solid);
+    color: var(--color-text);
+  }
+
+  .MuiDialogTitle-root,
+  .MuiDialogContent-root,
+  .MuiMenuItem-root,
+  .MuiIconButton-root {
+    color: var(--color-text);
+  }
+
+  .MuiOutlinedInput-notchedOutline {
+    border-color: var(--color-border);
+  }
+
+  .MuiInputLabel-root {
+    color: var(--color-text-muted);
+  }
+
+  .MuiButton-contained {
+    background: linear-gradient(135deg, var(--color-accent) 0%, var(--color-accent-strong) 100%);
+    color: #fff;
+  }
+
+  .MuiButton-outlined {
+    border-color: var(--color-border);
+  }
+
+  .MuiDivider-root {
+    border-color: var(--color-border);
+  }
+
+  .MuiMenuItem-root {
+    background: transparent;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    &.Mui-selected {
+      background: rgba(240, 171, 109, 0.18);
+    }
+
+    &.Mui-selected:hover {
+      background: rgba(240, 171, 109, 0.24);
+    }
+  }
+}
+
+.page-heading {
+  margin-bottom: 24px;
+}
+
+.hero-header,
+.toolbar-group {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.language-switch,
+.theme-switch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.toolbar-group {
+  flex-wrap: wrap;
+}
+
+.theme-toggle {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface-solid);
+  color: var(--color-text);
+}
+
+.app-shell[data-theme="dark"] {
+  .theme-toggle {
+    color: var(--color-text);
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 24px;
+  align-items: start;
+}
+
+.hero-title,
+.section-title {
+  color: var(--color-text);
+}
+
+.hero-title {
+  font-weight: 800;
+  line-height: 0.98;
+}
+
+.hero-label,
+.section-label {
+  letter-spacing: 0.18em;
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.hero-copy,
+.section-copy {
+  max-width: 720px;
+  color: var(--color-text-muted);
+}
+
+.panel-card {
+  height: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-panel);
+  background: var(--color-surface);
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow-soft);
+}
+
+.panel-card--form {
+  position: sticky;
+  top: 24px;
+}
+
+.section-title {
+  margin-top: 4px;
+  font-weight: 700;
+}
+
+.submit-button {
+  min-height: 52px;
+  border-radius: 16px;
+}
+
+.list-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.book-filters {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 16px;
+}
+
+.book-sort {
+  min-width: 0;
+}
+
+.book-card {
+  height: 100%;
+  border-radius: var(--radius-card);
+  border-color: var(--color-border);
+  background: var(--color-surface-solid);
+}
+
+.book-card .MuiCardActions-root {
+  justify-content: flex-end;
+  padding: 0 16px 16px;
+}
+
+.book-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.book-card__image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 14px;
+  background: var(--color-image-bg);
+}
+
+.book-card__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  align-items: center;
+}
+
+.book-detail-image {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+  border-radius: var(--radius-image);
+  background: var(--color-image-bg);
+}
+
+.book-detail-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.book-detail-title .MuiIconButton-root {
+  color: var(--color-text);
+}
+
+@include respond-below($breakpoint-tablet) {
+  .hero-header,
+  .toolbar-group,
+  .toolbar-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .panel-card--form {
+    position: static;
+  }
+}
+
+@include respond-below($breakpoint-mobile) {
+  .app-shell {
+    padding: 20px 0 28px;
+  }
+
+  .hero-title {
+    font-size: 2.25rem;
+  }
+
+  .list-header,
+  .book-card__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .book-filters {
+    grid-template-columns: 1fr;
+  }
+
+  .book-list-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@include respond-below($breakpoint-small) {
+  .hero-title {
+    font-size: 1.85rem;
+  }
+
+  .panel-card .MuiCardContent-root {
+    padding: 16px;
+  }
+}

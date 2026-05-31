@@ -1,6 +1,10 @@
 {
   "appTitle": "Favorite Books App",
   "language": "Language",
+  "theme": "Theme",
+  "toggleTheme": "Toggle theme",
+  "themeLight": "Light",
+  "themeDark": "Dark",
   "title": "Title",
   "author": "Author",
   "description": "Description",

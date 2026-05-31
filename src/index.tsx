@@ -1,49 +1,39 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import './index.css';
-import App from './App';
-import { store } from './store/store';
-import './i18n';
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import React, { useEffect, useMemo, useState } from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
+import App from "./App";
+import "./i18n";
+import { store } from "./store/store";
+import "./styles/style.scss";
+import { getTheme, ThemeMode } from "./styles/theme";
 
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#8b522a',
-    },
-    secondary: {
-      main: '#3d6b5d',
-    },
-    background: {
-      default: '#f8f1e7',
-      paper: '#fffdf9',
-    },
-  },
-  shape: {
-    borderRadius: 18,
-  },
-  typography: {
-    fontFamily:
-      '"Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif',
-    h2: {
-      fontWeight: 800,
-    },
-    h4: {
-      fontWeight: 700,
-    },
-  },
-});
+const Root = () => {
+  const [themeMode, setThemeMode] = useState<ThemeMode>("light");
+  const theme = useMemo(() => getTheme(themeMode), [themeMode]);
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
+  useEffect(() => {
+    document.body.setAttribute("data-theme", themeMode);
+
+    return () => {
+      document.body.removeAttribute("data-theme");
+    };
+  }, [themeMode]);
+
+  return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <App />
+        <App themeMode={themeMode} setThemeMode={setThemeMode} />
       </ThemeProvider>
     </Provider>
-  </React.StrictMode>
+  );
+};
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <Root />
+  </React.StrictMode>,
 );

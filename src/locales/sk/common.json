@@ -1,6 +1,10 @@
 {
   "appTitle": "Favorite Books App",
   "language": "Jazyk",
+  "theme": "Téma",
+  "toggleTheme": "Prepnúť tému",
+  "themeLight": "Svetlá",
+  "themeDark": "Tmavá",
   "title": "Názov",
   "author": "Autor",
   "description": "Popis",

@@ -1,0 +1,23 @@
+$font-family-base: "Avenir Next", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+$breakpoint-tablet: 900px;
+$breakpoint-mobile: 600px;
+$breakpoint-small: 320px;
+
+:root {
+  --color-bg: #f8f1e7;
+  --color-bg-accent-top: rgba(196, 164, 132, 0.22);
+  --color-bg-accent-bottom: rgba(131, 94, 65, 0.18);
+  --color-bg-gradient-end: #efe2d0;
+  --color-surface: rgba(255, 252, 247, 0.9);
+  --color-surface-solid: #fffdf9;
+  --color-text: #21150d;
+  --color-text-muted: #5d4737;
+  --color-accent: #8b522a;
+  --color-accent-strong: #6d3f1f;
+  --color-border: rgba(93, 71, 55, 0.12);
+  --color-image-bg: #eadbc9;
+  --shadow-soft: 0 22px 60px rgba(60, 38, 22, 0.08);
+  --radius-panel: 28px;
+  --radius-card: 20px;
+  --radius-image: 18px;
+}
